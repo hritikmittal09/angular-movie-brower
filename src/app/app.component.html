@@ -1,0 +1,151 @@
+<div id="movies-app">
+  <div class="input-fields">
+    <h3>Search Movies & TV Titles</h3>
+    <div [ngClass]="dataArr.length > 0 && windowWidth > 600 ? 'contains-data' : 'initial-search'">
+      <input
+        #title
+        class="year"
+        type="text"
+        placeholder="Enter a Movie or TV Title"
+        [ngClass]="{ 'movie-not-found': movieNotFound }"
+        (keydown.enter)="fetchResults()"
+      />
+      <input #year class="title" type="text" placeholder="Year (optional)" (keydown.enter)="fetchResults()" />
+      <button type="button" *ngIf="windowWidth > 600" (click)="fetchResults()">search</button>
+    </div>
+    <div *ngIf="600 > windowWidth && !movieNotFound" mobile-search [ngStyle]="{ gridTemplateColumns: dataArr.length === 0 ? '100px 25px' : null }">
+      <p *ngIf="dataArr.length > 0">{{ dataArr.length + " items" }}</p>
+      <button type="button" (click)="fetchResults()">Search</button>
+
+      <div *ngIf="600 > windowWidth" class="layout-options">
+        <div class="in-line" *ngIf="layout === 'grid'" (click)="setLayout('inline')">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div class="grid" *ngIf="layout === 'inline'" (click)="setLayout('grid')"></div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="dataArr.length > 0" class="results">
+    <div *ngIf="windowWidth > 600" class="layout-options">
+      <div class="in-line" *ngIf="layout === 'grid'" (click)="setLayout('inline')">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div class="grid" *ngIf="layout === 'inline'" (click)="setLayout('grid')"></div>
+    </div>
+
+    <div class="table-layout" *ngIf="layout === 'inline'">
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Actors</th>
+            <th>Awards</th>
+            <th>Box Office</th>
+            <th>Country</th>
+            <th>Director</th>
+            <th>Genre</th>
+            <th>Language</th>
+            <th>Year</th>
+            <th>Runtime</th>
+            <th>Released</th>
+            <th>Ratings</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let items of dataArr; let i = index" class="cinema-group">
+            <td>{{ items.Title }}</td>
+            <td>{{ items.Actors }}</td>
+            <td>{{ items.Awards }}</td>
+            <td>{{ items.BoxOffice }}</td>
+            <td>{{ items.Country }}</td>
+            <td>{{ items.Director }}</td>
+            <td>{{ items.Genre }}</td>
+            <td>{{ items.Language }}</td>
+            <td>{{ items.Year }}</td>
+            <td>{{ items.Runtime }}</td>
+            <td>{{ items.Released }}</td>
+            <td>
+              <table>
+                <tr *ngFor="let rating of items.Ratings">
+                  <td>{{ rating.Source }}</td>
+                  <td>{{ rating.Value }}</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid-layout" *ngIf="layout === 'grid'">
+      <div class="movie-data-block" *ngFor="let items of dataArr; let i = index" (click)="openLightbox(i)">
+        <div class="poster">
+          <img *ngIf="items.Poster != 'N/A'" [src]="items.Poster" />
+          <div *ngIf="items.Poster == 'N/A'" class="movie-unavailable">
+            <p>Movie Poster N/A</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="lightbox" (click)="closeLightbox()" class="bg"></div>
+  <section *ngIf="lightbox" class="lightbox">
+    <div (click)="closeLightbox()" *ngIf="lightbox" class="close-lightbox">
+      <span>&#x2715;</span>
+    </div>
+
+    <div class="movie-poster">
+      <img *ngIf="null != dataArr[currentMovie] && dataArr[currentMovie].Poster != 'N/A'" [src]="dataArr[currentMovie].Poster" />
+      <div *ngIf="dataArr[currentMovie].Poster == 'N/A'" class="movie-unavailable">
+        <p>Movie Poster N/A</p>
+      </div>
+    </div>
+
+    <div *ngIf="null != dataArr[currentMovie]" class="movie-details">
+      <p>
+        <span>Title:</span><span>{{ dataArr[currentMovie].Title }}</span>
+      </p>
+      <p>
+        <span>Actors:</span><span>{{ dataArr[currentMovie].Actors }}</span>
+      </p>
+      <p>
+        <span>Awards:</span><span>{{ dataArr[currentMovie].Awards }}</span>
+      </p>
+      <p>
+        <span>Box Office:</span><span>{{ dataArr[currentMovie].BoxOffice }}</span>
+      </p>
+      <p>
+        <span>Country</span><span>{{ dataArr[currentMovie].Country }}</span>
+      </p>
+      <p>
+        <span>Director:</span><span>{{ dataArr[currentMovie].Director }}</span>
+      </p>
+      <p>
+        <span>Genre:</span><span>{{ dataArr[currentMovie].Genre }}</span>
+      </p>
+      <p>
+        <span>Language:</span><span>{{ dataArr[currentMovie].Language }}</span>
+      </p>
+      <p>
+        <span>Year:</span><span>{{ dataArr[currentMovie].Year }}</span>
+      </p>
+      <p>
+        <span>Runtime:</span><span>{{ dataArr[currentMovie].Runtime }}</span>
+      </p>
+      <p>
+        <span>Released:</span><span>{{ dataArr[currentMovie].Released }}</span>
+      </p>
+    </div>
+
+    <div class="navigation">
+      <button class="previous" (click)="previousFlick()" *ngIf="currentMovie > 0">Previous</button>
+      <button class="next" (click)="nextFlick()" *ngIf="dataArr.length - 1 > currentMovie">Next</button>
+    </div>
+  </section>
+</div>

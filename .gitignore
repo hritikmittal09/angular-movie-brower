@@ -1,0 +1,127 @@
+# Node.js
+api/node_modules/
+project/dist
+project/node_modules
+.env
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm/
+.pnpm-lock.yaml
+pnpm-lock.yaml
+
+.angular/cache/
+
+# Environment variables
+api/.env
+api/Procfile
+
+.env.*
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Logs
+logs
+*.log
+*.log.*
+npm-debug.log*
+
+# OS generated
+.DS_Store
+Thumbs.db
+*.DS_Store
+
+# Editor and IDE
+*.swp
+*.swo
+*.swn
+*.bak
+*.tmp
+*.sublime-workspace
+*.sublime-project
+.vscode/
+*.idea
+*.iml
+*.ipynb_checkpoints
+*.pyc
+*.pyo
+*.pyc
+*.pyd
+*.pyc
+
+# Testing
+coverage/
+*.coverage
+*.cover
+*.log
+results.xml
+
+# Build and distribution
+dist/
+build/
+*.min.js
+*.min.css
+*.gz
+
+# Docker
+Dockerfile
+.dockerignore
+.dockerenv
+
+# Angular
+# Build and distribution
+/angular/dist/
+/angular/coverage/
+/angular/tmp/
+/angular/.angular/
+/angular/.angular-cli.json
+/angular/.angular-config.json
+/angular/.angular-errors.json
+/angular/.angular-tests.json
+/angular/.cache/
+/angular/.svelte/
+/angular/.next/
+/angular/.build/
+/angular/.cache/
+/angular/.yarn/
+/angular/.yarnrc.yml
+/angular/yarn.lock
+/angular/package-lock.json
+
+# Editor and IDE
+/angular/.vscode/
+/angular/.idea/
+/angular/.DS_Store
+/angular/Thumbs.db
+/angular/*.swp
+/angular/*.swo
+/angular/*.swn
+/angular/*.bak
+/angular/*.tmp
+
+# Logs
+/angular/logs/
+/angular/*.log
+
+# Testing
+/angular/coverage/
+/angular/*.coverage
+/angular/*.cover
+/angular/*.log
+/angular/results.xml
+
+# Miscellaneous
+/angular/*.lock
+/angular/*.iml
+/angular/*.ipynb_checkpoints
+/angular/*.pyc
+/angular/*.pyo
+/angular/*.pyc
+/angular/*.pyd
+/angular/*.pyc
+
+# Custom files and directories
+# Add any additional files or directories specific to your projects here
+node_modules
