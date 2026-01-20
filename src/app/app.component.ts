@@ -35,11 +35,11 @@ export class AppComponent implements OnInit, OnDestroy {
   @ViewChild("title", { static: false }) title?: ElementRef;
   @ViewChild("year", { static: false }) year?: ElementRef;
 
-  @HostListener("window:resize", ["$event.target.innerWidth"])
-  onResize(width: number) {
-    this.windowWidth = width;
-    this._globalFeatures.changeWidth(this.windowWidth);
-  }
+  @HostListener('window:resize')
+onResize() {
+  this.windowWidth = window.innerWidth;
+  this._globalFeatures.changeWidth(this.windowWidth);
+}
 
   constructor(
     private _globalFeatures: GlobalFeaturesService,
