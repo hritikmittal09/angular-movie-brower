@@ -51,3 +51,4 @@ Run the app
 ng serve
 
 Navigate to http://localhost:4200 in your browser.
+![alt text](image-1.png)
