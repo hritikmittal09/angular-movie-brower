@@ -31,8 +31,7 @@ The **OMDb Movie Search App** is an Angular 16+ standalone component project tha
 
 Clone the repository
 
-git clone https://github.com/yourusername/omdb-angular-app.git
-cd omdb-angular-app
+
 
 Install dependencies
 
